@@ -1,0 +1,85 @@
+import { AxiosResponse } from 'axios'
+import { ApiClient, ApiResponse, type ApiVoidResponse } from '~/shared/api'
+import {
+  type TGetRes{{pascalCase name}}Dto,
+  getRes{{pascalCase name}}Dto,
+  type TPostRes{{pascalCase name}}Dto,
+  type TPostPayload{{pascalCase name}}Dto,
+  postRes{{pascalCase name}}Dto,
+  postPayload{{pascalCase name}}Dto,
+  type TPatchRes{{pascalCase name}}Dto,
+  type TPatchPayload{{pascalCase name}}Dto,
+  patchRes{{pascalCase name}}Dto,
+  patchPayload{{pascalCase name}}Dto,
+  type TDeleteRes{{pascalCase name}}Dto,
+  type TDeletePayload{{pascalCase name}}Dto,
+  deleteRes{{pascalCase name}}Dto,
+  deletePayload{{pascalCase name}}Dto
+} from '.'
+
+const axios = ApiClient()
+
+/**
+ * @API문서
+ * @description {{kebabCase name}}
+ */
+export function get{{pascalCase name}}() {
+  return async function () {
+    const result = await axios
+      .get<ApiResponse<TGetRes{{pascalCase name}}Dto>>('api_endpoint_here')
+      .then((res) => res.data)
+  
+    getRes{{pascalCase name}}Dto.parse(result.data)
+    return result.data
+  }
+}
+
+/**
+ * @API문서
+ * @description {{kebabCase name}}
+ */
+export function post{{pascalCase name}}() {
+  return async function (body: TPostPayload{{pascalCase name}}Dto) {
+    type R = typeof body
+    type T = TPostRes{{pascalCase name}}Dto
+    const result = await axios
+      .post<T, AxiosResponse<ApiResponse<T>>, R>('api_endpoint_here', body)
+      .then(res => res.data)
+  
+    postRes{{pascalCase name}}Dto.parse(result.data)
+    return result
+  }
+}
+
+/**
+ * @API문서
+ * @description {{kebabCase name}}
+ */
+export function patch{{pascalCase name}}() {
+  return async function (body: TPatchPayload{{pascalCase name}}Dto) {
+    type T = TPatchRes{{pascalCase name}}Dto
+    type R = typeof body
+    const result = await axios
+      .patch<T, AxiosResponse<ApiResponse<T>>, R>('api_endpoint_here', body)
+      .then(res => res.data)
+  
+    patchRes{{pascalCase name}}Dto.parse(result.data)
+    return result
+  }
+}
+
+/**
+ * @API문서
+ * @description {{kebabCase name}}
+ */
+export function delete{{pascalCase name}}() {
+  return async function() {
+    type T = TDeleteRes{{pascalCase name}}Dto
+    const result = await axios
+      .delete<T, AxiosResponse<ApiResponse<T>>>('api_endpoint_here')
+      .then(res => res.data)
+  
+    deleteRes{{pascalCase name}}Dto.parse(result.data)
+    return result
+  }
+}

@@ -1,0 +1,13 @@
+import {
+  postRes{{pascalCase name}}Dto,
+  postPayload{{pascalCase name}}Dto,
+  postPayload{{pascalCase name}}Rdo,
+} from '.'
+import { z } from 'zod'
+
+/**
+ * post {{kebabCase name}}
+ */
+export type TPostRes{{pascalCase name}}Dto = z.infer<typeof postRes{{pascalCase name}}Dto>
+export type TPostPayload{{pascalCase name}}Dto = z.infer<typeof postPayload{{pascalCase name}}Dto>
+export type TPostPayload{{pascalCase name}}Rdo = z.infer<typeof postPayload{{pascalCase name}}Rdo>

@@ -1,0 +1,13 @@
+import {
+  patchRes{{pascalCase name}}Dto,
+  patchPayload{{pascalCase name}}Dto,
+  patchPayload{{pascalCase name}}Rdo,
+} from '.'
+import { z } from 'zod'
+
+/**
+ * patch {{kebabCase name}}
+ */
+export type TPatchRes{{pascalCase name}}Dto = z.infer<typeof patchRes{{pascalCase name}}Dto>
+export type TPatchPayload{{pascalCase name}}Dto = z.infer<typeof patchPayload{{pascalCase name}}Dto>
+export type TPatchPayload{{pascalCase name}}Rdo = z.infer<typeof patchPayload{{pascalCase name}}Rdo>

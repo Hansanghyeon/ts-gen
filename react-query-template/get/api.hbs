@@ -1,0 +1,21 @@
+import { directus } from '@/services/directus'
+import {
+  type TGetRes{{pascalCase name}}Dto,
+  getRes{{pascalCase name}}Dto,
+  type TGetPayload{{pascalCase name}}Dto,
+} from '.'
+
+/**
+ * @API문서 http://4t.gg
+ * @description {{kebabCase name}}
+ */
+export function get{{pascalCase name}}({ token }: { token: string }) {
+  return async function (params: TGetPayload{{pascalCase name}}Dto) {
+    const result = await directus(token)
+      // .request(readItems('product')) // archive
+      // .request(readItem('product', slug)) // single
+  
+    getRes{{pascalCase name}}Dto.parse(result)
+    return result
+  }
+}

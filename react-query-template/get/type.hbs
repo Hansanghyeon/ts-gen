@@ -1,0 +1,8 @@
+import { getRes{{pascalCase name}}Dto, getPayload{{pascalCase name}}Dto } from '.'
+import { z } from 'zod'
+
+/**
+ * get {{kebabCase name}}
+ */
+export type TGetRes{{pascalCase name}}Dto = z.infer<typeof getRes{{pascalCase name}}Dto>
+export type TGetPayload{{pascalCase name}}Dto = z.infer<typeof getPayload{{pascalCase name}}Dto>
