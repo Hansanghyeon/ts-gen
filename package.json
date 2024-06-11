@@ -2,7 +2,7 @@
   "name": "@hyeon/react-gen",
   "version": "1.0.0",
   "type": "module",
-  "repository": "git@github.com:Hansanghyeon/react-gen.git",
+  "repository": "https://github.com/Hansanghyeon/react-gen",
   "author": "Hansanghyeon <999@hyeon.pro>",
   "license": "MIT",
   "devDependencies": {
