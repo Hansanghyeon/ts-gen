@@ -17,12 +17,12 @@ export default function (plop) {
     actions: [
       {
         type: 'add',
-        path: `${__dirname}/src/api/{{kebabCase name}}/index.ts`,
+        path: `{{kebabCase name}}/index.ts`,
         templateFile: `${__dirname}/react-query-template/get/index.hbs`,
       },
       ...['api', 'dto', 'query', 'type'].map(file => ({
         type: 'add',
-        path: `${__dirname}/src/api/{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
+        path: `{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
         templateFile: `${__dirname}/react-query-template/get/${file}.hbs`,
       }))
     ],
@@ -40,12 +40,12 @@ export default function (plop) {
     actions: [
       {
         type: 'add',
-        path: `${__dirname}/src/api/{{kebabCase name}}/index.ts`,
+        path: `{{kebabCase name}}/index.ts`,
         templateFile: `${__dirname}/react-query-template/post/index.hbs`,
       },
       ...['api', 'dto', 'rdo', 'query', 'type'].map(file => ({
         type: 'add',
-        path: `${__dirname}/src/api/{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
+        path: `{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
         templateFile: `${__dirname}/react-query-template/post/${file}.hbs`,
       }))
     ],
@@ -63,12 +63,12 @@ export default function (plop) {
     actions: [
       {
         type: 'add',
-        path: `${__dirname}/src/api/{{kebabCase name}}/index.ts`,
+        path: `{{kebabCase name}}/index.ts`,
         templateFile: `${__dirname}/react-query-template/patch/index.hbs`,
       },
       ...['api', 'dto', 'rdo', 'query', 'type'].map(file => ({
         type: 'add',
-        path: `${__dirname}/src/api/{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
+        path: `{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
         templateFile: `${__dirname}/react-query-template/patch/${file}.hbs`,
       }))
     ],
@@ -87,12 +87,12 @@ export default function (plop) {
     actions: [
       {
         type: 'add',
-        path: `${__dirname}/src/api/{{kebabCase name}}/index.ts`,
+        path: `{{kebabCase name}}/index.ts`,
         templateFile: `${__dirname}/react-query-template/crud/index.hbs`,
       },
       ...['api', 'dto', 'rdo', 'query', 'type'].map(file => ({
         type: 'add',
-        path: `${__dirname}/src/api/{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
+        path: `{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
         templateFile: `${__dirname}/react-query-template/crud/${file}.hbs`,
       }))
     ],

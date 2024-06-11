@@ -1,7 +1,6 @@
 {
   "name": "@hyeon/react-gen",
   "version": "1.0.0",
-  "main": "index.js",
   "type": "module",
   "repository": "git@github.com:Hansanghyeon/react-gen.git",
   "author": "Hansanghyeon <999@hyeon.pro>",
@@ -10,5 +9,13 @@
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "plop": "^4.0.1"
+  },
+  "files": [
+    "plopfile.js",
+    "cli.js",
+    "react-query-template"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }
