@@ -2,6 +2,9 @@
   "name": "@hyeon/react-gen",
   "version": "1.0.0",
   "type": "module",
+  "main": "cli.js",
+  "description": "Your package description",
+  "keywords": [],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Hansanghyeon/react-gen.git"
@@ -20,5 +23,9 @@
     "plopfile.js",
     "cli.js",
     "react-query-template"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
 }
