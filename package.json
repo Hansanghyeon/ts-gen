@@ -1,8 +1,7 @@
 {
   "name": "@hyeon/react-gen",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "type": "module",
-  "main": "cli.js",
   "description": "Your package description",
   "keywords": [],
   "repository": {
@@ -12,16 +11,17 @@
   "author": "Hansanghyeon <999@hyeon.pro>",
   "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "plop"
   },
-  "devDependencies": {
-    "lodash": "^4.17.21",
-    "lodash-es": "^4.17.21",
+  "bin": {
+    "react-gen": "./cli.js"
+  },
+  "preferGlobal": true,
+  "dependencies": {
     "plop": "^4.0.1"
   },
   "files": [
     "plopfile.js",
-    "cli.js",
     "react-query-template"
   ],
   "publishConfig": {

@@ -1,19 +1,25 @@
 #!/usr/bin/env node
+import path from "node:path";
+import minimist from "minimist";
+import { Plop, run } from "plop";
 
-import { Plop, run } from 'plop';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+const args = process.argv.slice(2);
+const argv = minimist(args);
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const plopfilePath = `${__dirname}/plopfile.js`;
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
-Plop.launch(
-  {
-    cwd: process.cwd(),  // 현재 작업 디렉토리에서 Plop 실행
-    configPath: plopfilePath,
-    require: [],
-    completion: 'plop',
-  },
-  run
-);
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+Plop.prepare({
+  cwd: argv.cwd,
+  configPath: path.join(__dirname, 'plopfile.js'),
+  preload: argv.preload || [],
+  completion: argv.completion
+}, env => Plop.execute(env, (env) => {
+  const options = {
+      ...env,
+      dest: process.cwd() // this will make the destination path to be based on the cwd when calling the wrapper
+  }
+  return run(options, undefined, true)
+}));
