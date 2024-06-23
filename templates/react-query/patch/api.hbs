@@ -1,10 +1,9 @@
 import { AxiosResponse } from 'axios'
-import { ApiClient, ApiResponse, type ApiVoidResponse } from '~/shared/api'
+import { ApiClient } from '~/shared/lib/api'
 import {
   type TPatchRes{{pascalCase name}}Dto,
   type TPatchPayload{{pascalCase name}}Dto,
   patchRes{{pascalCase name}}Dto,
-  patchPayload{{pascalCase name}}Dto,
 } from '.'
 
 const axios = ApiClient()
@@ -18,7 +17,7 @@ export function patch{{pascalCase name}}() {
     type T = TPatchRes{{pascalCase name}}Dto
     type R = typeof body
     const result = await axios
-      .patch<T, AxiosResponse<ApiResponse<T>>, R>(`{{varUrl endpoint}}`, body)
+      .patch<T, AxiosResponse<T>, R>(`{{varUrl endpoint}}`, body)
       .then((res) => res.data)
   
     patchRes{{pascalCase name}}Dto.parse(result.data)

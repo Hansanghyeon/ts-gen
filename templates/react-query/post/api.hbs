@@ -1,10 +1,9 @@
 import { AxiosResponse } from 'axios'
-import { ApiClient, ApiResponse, type ApiVoidResponse } from '~/shared/api'
+import { ApiClient } from '~/shared/lib/api'
 import {
   type TPostRes{{pascalCase name}}Dto,
   type TPostPayload{{pascalCase name}}Dto,
   postRes{{pascalCase name}}Dto,
-  postPayload{{pascalCase name}}Dto,
 } from '.'
 
 const axios = ApiClient()
@@ -18,7 +17,7 @@ export function post{{pascalCase name}}() {
     type R = typeof body
     type T = TPostRes{{pascalCase name}}Dto
     const result = await axios
-      .post<T, AxiosResponse<ApiResponse<T>>, R>(`{{varUrl endpoint}}`, body)
+      .post<T, AxiosResponse<T>, R>(`{{varUrl endpoint}}`, body)
       .then(res => res.data)
   
     postRes{{pascalCase name}}Dto.parse(result.data)
