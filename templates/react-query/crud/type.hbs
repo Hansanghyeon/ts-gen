@@ -1,0 +1,39 @@
+import {
+  getRes{{pascalCase name}}Dto,
+  postRes{{pascalCase name}}Dto,
+  postPayload{{pascalCase name}}Dto,
+  postPayload{{pascalCase name}}Rdo,
+  patchRes{{pascalCase name}}Dto,
+  patchPayload{{pascalCase name}}Dto,
+  patchPayload{{pascalCase name}}Rdo,
+  deleteRes{{pascalCase name}}Dto,
+  deletePayload{{pascalCase name}}Dto,
+  deletePayload{{pascalCase name}}Rdo,
+} from '.'
+import { z } from 'zod'
+
+/**
+ * get {{kebabCase name}}
+ */
+export type TGetRes{{pascalCase name}}Dto = z.infer<typeof getRes{{pascalCase name}}Dto>
+
+/**
+ * post {{kebabCase name}}
+ */
+export type TPostRes{{pascalCase name}}Dto = z.infer<typeof postRes{{pascalCase name}}Dto>
+export type TPostPayload{{pascalCase name}}Dto = z.infer<typeof postPayload{{pascalCase name}}Dto>
+export type TPostPayload{{pascalCase name}}Rdo = z.infer<typeof postPayload{{pascalCase name}}Rdo>
+
+/**
+ * patch {{kebabCase name}}
+ */
+export type TPatchRes{{pascalCase name}}Dto = z.infer<typeof patchRes{{pascalCase name}}Dto>
+export type TPatchPayload{{pascalCase name}}Dto = z.infer<typeof patchPayload{{pascalCase name}}Dto>
+export type TPatchPayload{{pascalCase name}}Rdo = z.infer<typeof patchPayload{{pascalCase name}}Rdo>
+
+/**
+ * delete {{kebabCase name}}
+ */
+export type TDeleteRes{{pascalCase name}}Dto = z.infer<typeof deleteRes{{pascalCase name}}Dto>
+export type TDeletePayload{{pascalCase name}}Dto = z.infer<typeof deletePayload{{pascalCase name}}Dto>
+export type TDeletePayload{{pascalCase name}}Rdo = z.infer<typeof deletePayload{{pascalCase name}}Rdo>

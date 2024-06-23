@@ -1,0 +1,27 @@
+import { AxiosResponse } from 'axios'
+import { ApiClient, ApiResponse, type ApiVoidResponse } from '~/shared/api'
+import {
+  type TPostRes{{pascalCase name}}Dto,
+  type TPostPayload{{pascalCase name}}Dto,
+  postRes{{pascalCase name}}Dto,
+  postPayload{{pascalCase name}}Dto,
+} from '.'
+
+const axios = ApiClient()
+
+/**
+ * @API문서
+ * @description {{kebabCase name}}
+ */
+export function post{{pascalCase name}}() {
+  return async function (body: TPostPayload{{pascalCase name}}Dto) {
+    type R = typeof body
+    type T = TPostRes{{pascalCase name}}Dto
+    const result = await axios
+      .post<T, AxiosResponse<ApiResponse<T>>, R>(`{{varUrl endpoint}}`, body)
+      .then(res => res.data)
+  
+    postRes{{pascalCase name}}Dto.parse(result.data)
+    return result
+  }
+}

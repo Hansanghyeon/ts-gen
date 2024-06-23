@@ -1,0 +1,10 @@
+import { useOrderCode } from '~/shared/hooks/use-order-code'
+import { T{{pascalCase name}}Base, use{{pascalCase name}}Atom } from '.'
+
+interface T{{pascalCase name}} extends T{{pascalCase name}}Base {}
+export function {{pascalCase name}}({ atomKey }: T{{pascalCase name}}) {
+  const setModal = use{{pascalCase name}}Atom.set({
+    atomKey
+  })
+  return null
+}

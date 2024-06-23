@@ -1,0 +1,19 @@
+import { readItem, readItems } from '@directus/sdk'
+import { directus } from '@/services/directus'
+import { getRes{{pascalCase name}}Dto, type TGetParams{{pascalCase name}} } from '.'
+
+/**
+ * @description {{kebabCase name}}
+ */
+export function get{{pascalCase name}}(token: string) {
+  return function (params: TGetParams{{pascalCase name}}) {
+    return async function () {
+      const result = await directus(token)
+        // .request(readItem('product', slug)) // single
+        // .request(readItems('product')) // archive
+    
+      getRes{{pascalCase name}}Dto.parse(result)
+      return result
+    }
+  }
+}

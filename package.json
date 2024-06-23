@@ -1,8 +1,7 @@
 {
-  "name": "@hyeon/react-gen",
-  "version": "1.0.8",
+  "name": "@hyeon/ts-gen",
+  "version": "1.0.10",
   "type": "module",
-  "description": "Your package description",
   "keywords": [],
   "repository": {
     "type": "git",
@@ -14,7 +13,7 @@
     "start": "plop"
   },
   "bin": {
-    "react-gen": "./cli.js"
+    "ts-gen": "./cli.js"
   },
   "preferGlobal": true,
   "dependencies": {

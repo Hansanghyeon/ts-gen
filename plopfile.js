@@ -5,96 +5,50 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default function (plop) {
-  plop.setGenerator('react-query (get)', {
-    description: 'Create a new API function',
-    prompts: [
-      {
-        type: 'input',
-        name: 'name',
-        message: 'What is your API function name?',
-      },
-    ],
-    actions: [
-      {
-        type: 'add',
-        path: `{{kebabCase name}}/index.ts`,
-        templateFile: `${__dirname}/react-query-template/get/index.hbs`,
-      },
-      ...['api', 'dto', 'query', 'type'].map(file => ({
-        type: 'add',
-        path: `{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
-        templateFile: `${__dirname}/react-query-template/get/${file}.hbs`,
-      }))
-    ],
-  });
+  plop.setHelper('varUrl', function (text) {
+    // 기본 API 경로 제거
+    let modified_content = text
+    .replace(/https:\/\/c3api.imstage.me\/admin\/v1/g, '')
+    .replace(/https:\/\/api.oms.imstage.me\/admin\/v1/g, '');
 
-  plop.setGenerator('react-query (post)', {
-    description: 'Create a new API function',
-    prompts: [
-      {
-        type: 'input',
-        name: 'name',
-        message: 'What is your API function name?',
-      },
-    ],
-    actions: [
-      {
-        type: 'add',
-        path: `{{kebabCase name}}/index.ts`,
-        templateFile: `${__dirname}/react-query-template/post/index.hbs`,
-      },
-      ...['api', 'dto', 'rdo', 'query', 'type'].map(file => ({
-        type: 'add',
-        path: `{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
-        templateFile: `${__dirname}/react-query-template/post/${file}.hbs`,
-      }))
-    ],
-  });
+    // {orderCode}와 같은 패턴을 ${orderCode}로 바꾼다.
+    let final_content = modified_content.replace(/{([^}]*)}/g, '${$1}');
 
-  plop.setGenerator('react-query (patch)', {
-    description: 'Create a new API function',
-    prompts: [
-      {
-        type: 'input',
-        name: 'name',
-        message: 'What is your API function name?',
-      },
-    ],
-    actions: [
-      {
-        type: 'add',
-        path: `{{kebabCase name}}/index.ts`,
-        templateFile: `${__dirname}/react-query-template/patch/index.hbs`,
-      },
-      ...['api', 'dto', 'rdo', 'query', 'type'].map(file => ({
-        type: 'add',
-        path: `{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
-        templateFile: `${__dirname}/react-query-template/patch/${file}.hbs`,
-      }))
-    ],
-  });
-  
+    return final_content
+  })
 
-  plop.setGenerator('react-query (CRUD)', {
-    description: 'Create a new API function',
-    prompts: [
-      {
-        type: 'input',
-        name: 'name',
-        message: 'What is your API function name?',
-      },
-    ],
-    actions: [
-      {
-        type: 'add',
-        path: `{{kebabCase name}}/index.ts`,
-        templateFile: `${__dirname}/react-query-template/crud/index.hbs`,
-      },
-      ...['api', 'dto', 'rdo', 'query', 'type'].map(file => ({
-        type: 'add',
-        path: `{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
-        templateFile: `${__dirname}/react-query-template/crud/${file}.hbs`,
-      }))
-    ],
-  });
+  // ====================================== plop.setGenerator ======================================
+  const prompts = [
+    {
+      type: 'input',
+      name: 'name',
+      message: 'What is your API function name\n💬 ',
+    },
+    {
+      type: 'input',
+      name: 'endpoint',
+      message: 'What is your API endpoint? (ex: http://example.com/api or /auth/login)\n💬 ',
+    },
+  ]
+
+  const methods = ['get', 'post', 'patch', 'CRUD']
+  methods.forEach(method => {
+    // get에서는 rdo를 제거
+    const file = method === 'get' ? ['api', 'dto', 'query', 'type'] : ['api', 'dto', 'rdo', 'query', 'type'];
+    plop.setGenerator(`react-query (${method})`, {
+      prompts,
+      actions: [
+        {
+          type: 'add',
+          path: `{{kebabCase name}}/index.ts`,
+          templateFile: `${__dirname}/templates/react-query/${method}/index.hbs`,
+        },
+        ...file.map(file => ({
+          type: 'add',
+          path: `{{kebabCase name}}/{{kebabCase name}}.${file}.ts`,
+          templateFile: `${__dirname}/templates/react-query/${method}/${file}.hbs`,
+        }))
+      ],
+    });
+  })
 }

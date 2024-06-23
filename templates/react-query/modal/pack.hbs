@@ -1,0 +1,33 @@
+import React from 'react'
+import { ErrorBoundary } from '@sentry/react'
+import { AlertDialog } from '~/shared/components/ui/alert-dialog'
+import { ErrorCard } from '~/shared/components/error'
+import { Loading } from '~/shared/components/loading'
+import { T{{pascalCase name}}Base, use{{pascalCase name}}Atom } from '.'
+
+const {{pascalCase name}}Container = React.lazy(() =>
+  import('.').then((module) => ({
+    default: React.memo(module.{{pascalCase name}}),
+  }))
+)
+
+interface T{{pascalCase name}}Pack extends T{{pascalCase name}}Base {}
+export function {{pascalCase name}}Pack(props: T{{pascalCase name}}Pack) {
+  const [open, setState] = use{{pascalCase name}}Atom.state({
+    atomKey: props.atomKey,
+  })
+  return (
+    <AlertDialog.Root open={open} onOpenChange={setState}>
+      <AlertDialog.Portal>
+        <AlertDialog.Overlay />
+        <AlertDialog.Content className="rounded-[20px] p-0 pt-[32px] pb-[20px] gap-0 max-w-[380px]">
+          <ErrorBoundary fallback={ErrorCard}>
+            <React.Suspense fallback={<Loading />}>
+              <{{pascalCase name}}Container {...props} />
+            </React.Suspense>
+          </ErrorBoundary>
+        </AlertDialog.Content>
+      </AlertDialog.Portal>
+    </AlertDialog.Root>
+  )
+}

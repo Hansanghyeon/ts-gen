@@ -1,0 +1,90 @@
+import React from 'react'
+import { SetStateAction, atom, useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { RESET, atomFamily, atomWithReset, useResetAtom } from 'jotai/utils'
+
+/**
+ * @필수로_교체하기
+ * UUID
+ */
+
+type AtomKey = {
+  UUID: string
+  atomKey?: string
+}
+type AtomType = {
+  key: string
+  value?: boolean
+}
+const {{camelCase name}}State = atomFamily(
+  ({ key, value = false }: AtomType) => {
+    const rat = atomWithReset<AtomType>({
+      key,
+      value,
+    })
+
+    const at = atom(
+      (get) => get(rat).value,
+      (_get, set, update: SetStateAction<AtomType['value']> | typeof RESET) => {
+        if (update === RESET) {
+          set(rat, RESET)
+          return
+        }
+        if (typeof update === 'function') {
+          set(rat, (prev) => {
+            const v = update(prev.value)
+            return { key, value: v }
+          })
+          return
+        }
+        set(rat, { key, value: update })
+      }
+    )
+    at.debugLabel = key
+    return at
+  },
+  (a, b) => a.key === b.key
+)
+
+export const use{{pascalCase name}}Atom = {
+  key: (p: AtomKey) => `at:${p.atomKey ?? ''}:UUID:${p.UUID}:{{kebabCase name}}`,
+  state: (p: AtomKey) =>
+    useAtom(
+      React.useMemo(
+        () =>
+          {{camelCase name}}State({
+            key: use{{pascalCase name}}Atom.key(p),
+          }),
+        [p]
+      )
+    ),
+  get: (p: AtomKey) =>
+    useAtomValue(
+      React.useMemo(
+        () =>
+          {{camelCase name}}State({
+            key: use{{pascalCase name}}Atom.key(p),
+          }),
+        [p]
+      )
+    ),
+  set: (p: AtomKey) =>
+    useSetAtom(
+      React.useMemo(
+        () =>
+          {{camelCase name}}State({
+            key: use{{pascalCase name}}Atom.key(p),
+          }),
+        [p]
+      )
+    ),
+  reset: (p: AtomKey) =>
+    useResetAtom(
+      React.useMemo(
+        () =>
+          {{camelCase name}}State({
+            key: use{{pascalCase name}}Atom.key(p),
+          }),
+        [p]
+      )
+    ),
+}

@@ -1,0 +1,23 @@
+import { AxiosResponse } from 'axios'
+import { ApiClient, ApiResponse, type ApiVoidResponse } from '~/shared/api'
+import {
+  getRes{{pascalCase name}}Dto,
+  type TGetPayload{{pascalCase name}}Dto,
+} from '.'
+
+const axios = ApiClient()
+
+/**
+ * @API문서
+ * @description {__kebabCaseName__}
+ */
+export function get{{pascalCase name}}() {
+  return async function (params: TGetPayload{{pascalCase name}}Dto) {
+    const result = await axios
+      .get<ApiResponse<TGetRes{{pascalCase name}}Dto>>(`{{varUrl endpoint}}`, { params })
+      .then((res) => res.data)
+  
+    getRes{{pascalCase name}}Dto.parse(result.data)
+    return result.data
+  }
+}
