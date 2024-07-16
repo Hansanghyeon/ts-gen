@@ -7,7 +7,7 @@ vscode의 template generator를 cli로 만들고 template를 공용관리할 수
 코드를 만들고자하는 폴더로간다
 
 ```sh
-root@hyeon:~/src/api# npx @hyeon/react-gen
+root@hyeon:~/src/api# npx @hyeon/ts-gen
 ```
 
 ```bash
